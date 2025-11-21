@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    CoinHolder comp;
-    
+
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        comp= collision.GetComponent<CoinHolder>();
+        var comp= collision.GetComponent<CoinHolder>();
         if (comp)
         {
             comp.coin += 1;

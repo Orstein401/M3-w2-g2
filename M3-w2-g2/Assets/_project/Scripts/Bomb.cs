@@ -7,12 +7,11 @@ public class Bomb : MonoBehaviour
 {
     
     [SerializeField] private int damage;
-    health comp;
   
    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        comp=other.GetComponent<health>();
+        var comp=other.GetComponent<health>();
         if (comp != null)
         {
            comp.TakeDamage(damage);
