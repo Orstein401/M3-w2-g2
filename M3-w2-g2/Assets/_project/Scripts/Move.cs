@@ -7,10 +7,11 @@ public class Move : MonoBehaviour
 {
     [SerializeField] float speed = 5;
     Rigidbody2D _rb;
-    Vector2 dir;
+   
+    Vector2 Velocity;
    
 
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         
@@ -18,18 +19,20 @@ public class Move : MonoBehaviour
 
     private void Update()
     {
-       dir= new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+       Velocity= new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
        
-       if (dir.magnitude > 1)
+       if (Velocity.magnitude > 1)
         {
-           dir= dir/ Mathf.Sqrt(dir.magnitude);
+           
+            Velocity = Velocity.normalized;
         }
        
 
     }
     void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + dir * (speed * Time.deltaTime));
+        
+        _rb.velocity = Velocity*speed;
         
     }
 }
